@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=DM+Sans:wght@500&family=Handlee&family=Nabla&family=Noto+Sans+Mono:wght@500&family=Reem+Kufi+Ink&family=Secular+One&display=swap');
+
+.container {
+    position: fixed;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 70px;
+    margin-top: 20px;
+    /* gap: ; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; */
+}
+
+.current {
+    width: 400px;
+    height: 400px;
+    margin-left: 70px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.next {
+    font-family: 'Noto Sans Mono', monospace;
+    /* border: 1px solid #000; */
+    width: 400px;
+    height: 450px;
+    margin-left: 70px;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    overflow: hidden;
+}
+
+.title {
+    border: 1px solid dodgerblue;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.weather_wrapper {
+    border: 2px solid crimson;
+    border-radius: 10px;
+    overflow: scroll;
+    padding: 15px;
+}

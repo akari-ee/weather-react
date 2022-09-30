@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=DM+Sans:wght@500&family=Handlee&family=Nabla&family=Noto+Sans+Mono:wght@500&family=Reem+Kufi+Ink&family=Secular+One&display=swap');
+
+.container {
+    font-family: 'Noto Sans Mono', monospace;
+    width: 400px;
+    height: 400px;
+    border: 2px solid #000;
+    border-radius: 20px;
+    display: grid;
+    gap: 10px 10px;
+    grid-template-columns: minmax(200px, auto) 1fr;
+    /* background-image: url("http://openweathermap.org/img/wn/10d@2x.png");
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+.temp_wrapper {
+    border: 1px solid crimson;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: grid;
+    grid-template-rows: 2fr 1.5fr;
+}
+
+.cur_temp {
+    border: 1px solid dodgerblue;
+    font-size: 4.3rem;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin: auto;
+}
+
+.minmax_temp_wrapper {
+    border-top: 1px solid #000;
+    margin: auto 13px;
+    padding-top: 15px;
+}
+
+.min_temp {
+    border: 1px solid slateblue;
+    margin-bottom: 5px;
+}
+
+.max_temp {
+    border: 1px solid coral;
+}
+
+.icon_wrapper {
+    border: 1px solid crimson;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    margin: auto;
+}
+
+.icon {
+    border: 1px solid gold;
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.desc_wrapper {
+    border: 1px solid crimson;
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    padding-left: 30px;
+    height: 60px;
+    line-height: 60px;
+
+}
+
+.date_wrapper {
+    padding-left: 30px;
+    border: 1px solid crimson;
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    height: 60px;
+    line-height: 60px;
+}
+
+.desc {
+    border: 1px solid #000;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+}

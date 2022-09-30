@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=DM+Sans:wght@500&family=Handlee&family=Nabla&family=Noto+Sans+Mono:wght@500&family=Reem+Kufi+Ink&family=Secular+One&display=swap');
+
+.container {
+    display: grid;
+    gap: 0px 20px;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    text-align: center;
+    height: 70px;    
+    line-height: 70px;
+    margin-bottom: 20px;
+    font-family: 'Noto Sans Mono', monospace;
+}
+
+.icon {
+    text-align: center;
+    width: 70px;
+    height: 70px;
+}
+
+.icon_wrapper {
+    height: inherit;
+    /* border: 1px solid crimson; */
+}
+
+.temp_wrapper {
+    height: inherit;
+    font-size: 1.5rem;
+    /* border: 1px solid dodgerblue; */
+}
+
+.date {
+    height: inherit;
+    font-size: 1rem;
+    /* border: 1px solid greenyellow; */
+}
+
+.day {
+    height: inherit;
+    font-size: 1rem;
+    /* border: 1px solid slateblue; */
+}
