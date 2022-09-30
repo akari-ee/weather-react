@@ -1,10 +1,41 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./Weather.module.css"
 
-function Weatehr({feels, minTemp, maxTemp, humid, pressure, rain, sunrise, sunset, windSpeed, icon, desc}) {
+const DEG_ICON = "°";
+const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function Weatehr({minTemp, maxTemp, temp, icon, desc, dt}) {
+    const [day, setDay] = useState(null);
+    const [month, setMonth] = useState(null);
+    const [date, setDate] = useState(0);
+
+    const unixToReal = (dt) => {
+        const real = new Date(dt * 1000);
+        setDay(dayList[real.getDay()]); // 0 - 6(Sun - Sat)
+        setMonth(monthList[real.getMonth()]); // 1 - 12(Jan - Dec)
+        setDate(real.getDate()); // 1 - 31
+    }
+
+    useEffect(() => {
+        unixToReal(dt);
+    });
+
     return(
         <div className={styles.container}>
-            
+            <div className={styles.temp_wrapper}>
+                <div className={styles.cur_temp}>{temp}{DEG_ICON}</div>
+                <div className={styles.minmax_temp_wrapper}>
+                    <div className={styles.min_temp}>최저: {minTemp}{DEG_ICON}</div>
+                    <div className={styles.max_temp}>최고: {maxTemp}{DEG_ICON}</div>
+                </div>
+            </div>
+            <div className={styles.icon_wrapper}>
+                <img className={styles.icon} src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>
+                <div className={styles.desc}>{desc}</div>
+            </div>
+            <div className={styles.desc_wrapper}>위치</div>
+            <div className={styles.date_wrapper}>{date}&nbsp;{month},{day}</div>
         </div>
     );
 }

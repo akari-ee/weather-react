@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Weatehr from "./components/Weather";
 import WeekWeather from "./components/WeekWeather";
+import Today from "./components/Today";
 import styles from "./Home.module.css";
 
 const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
@@ -20,8 +21,8 @@ function Home() {
     // * for WeekWeather.js
     // ! icon, minTemp, maxTemp, [date, day] => unix to real time => use TimeStamp => calculate
     const [weekList, setWeekList] = useState([]); // WeekWeather List
-    const [fullDate, setFullDate] = useState([]);
-    // * day, month, date Array for weekList[i].dt
+    const [fullDate, setFullDate] = useState([]); // * day, month, date Array for each weekList[i].dt
+    
     
     // * Unix time to Real time
     const unixToReal = (dt, i) => {
@@ -37,7 +38,7 @@ function Home() {
     const getCurrentWeather = async () => {
         const json = await(
             await fetch(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}&units=metric&lang=kr`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}&units=metric`
             )
         ).json();
         setInfo(json);
@@ -56,14 +57,14 @@ function Home() {
         ).json();
         setWeekList(json.list);
     }
-
     // * set CurrentWeather & WeekWeather
     useEffect(() => {
         getCurrentWeather();
         getWeekWeather();
     }, []);
-    // * set WeekWeather's fullDate(Array)
 
+    // console.log(info);
+    // * set WeekWeather's fullDate(Array)
     useEffect(() => {
         weekList.map((week, index) => {
             unixToReal(week.dt, index);
@@ -71,38 +72,53 @@ function Home() {
         weekList.shift(); // remove first (weekList[0] = currentWeather)
         fullDate.shift();
     }, [weekList]);
-
     // ! RETURN
     return (
         <div className={styles.container}>
             <div className={styles.current}>
                 <Weatehr
-                    feels={main.feels_like}
-                    minTemp={main.temp_min}
-                    maxTemp={main.temp_max}
-                    humid={main.humidity}
-                    pressure={main.pressure}
-                    rain={null}
-                    sunrise={sys.sunrise}
-                    sunset={sys.sunset}
-                    windSpeed={wind.speed}
+                    // feels={main.feels_like}
+                    minTemp={Math.ceil(main.temp_min)}
+                    maxTemp={Math.ceil(main.temp_max)}
+                    temp={Math.ceil(main.temp)}
+                    // humid={main.humidity}
+                    // pressure={main.pressure}
+                    // rain={null}
+                    // sunrise={sys.sunrise}
+                    // sunset={sys.sunset}
+                    // windSpeed={wind.speed}
                     icon={weather.icon}
                     desc={weather.description} 
+                    dt={info.dt}
                 />
             </div>
             <div className={styles.next}>
-                {weekList.map((week, index) => (
-                    fullDate[index] &&
-                    <WeekWeather 
-                        key={week.dt}
-                        month={fullDate[index].month}
-                        day={fullDate[index].day}
-                        date={fullDate[index].date}
-                        maxTemp={week.temp.max}
-                        minTemp={week.temp.min}
-                    />
-                ))}
+                <div className={styles.title}>7 days forecast</div>
+                <div className={styles.weather_wrapper}>
+                    {weekList.map((week, index) => (
+                        fullDate[index] &&
+                        <WeekWeather 
+                            key={week.dt}
+                            month={fullDate[index].month}
+                            day={fullDate[index].day}
+                            date={fullDate[index].date}
+                            maxTemp={Math.ceil(week.temp.max)}
+                            minTemp={Math.ceil(week.temp.min)}
+                            icon={week.weather[0].icon}
+                        />
+                    ))}
+                </div>
             </div>
+            <Today
+                feels={Math.ceil(main.feels_like)}
+                humid={main.humidity}
+                pressure={main.pressure}
+                rain={info.rain === undefined ? 0 : info.rain}
+                sunrise={new Date(sys.sunrise * 1000).getHours() + " : " +new Date(sys.sunrise * 1000).getMinutes()}
+                sunset={new Date(sys.sunset * 1000).getHours() + " : " +new Date(sys.sunset * 1000).getMinutes()}
+                windSpeed={Math.ceil(wind.speed)}
+                visibility={(info.visibility / 1000)}
+            />
         </div>
     );
 }
