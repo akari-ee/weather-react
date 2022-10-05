@@ -22,15 +22,13 @@ function Map({ x, y }) {
     // add Basic Layer(osm) to map
     map = L.map("map", { center: new L.latLng(x, y), zoom: 13, layers: [osm] });
   }
-
-  // const position = [x, y];
-  useEffect(() => {
-    console.log(map); // should output the object that represents instance of Leaflet
+  function removeExistedMap() {
     if (map !== undefined && map !== null) {
       map.remove(); // should remove the map from UI and clean the inner children of DOM element
-      console.log(map); // nothing should actually happen to the value of mymap
     }
-
+  }
+  useEffect(() => {
+    removeExistedMap(); // remove existed Map
     initMap(); // init Map
 
     // Start TileLayer
