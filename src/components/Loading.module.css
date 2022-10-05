@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=DM+Sans:wght@500&family=Handlee&family=Nabla&family=Noto+Sans+Mono:wght@500&family=Reem+Kufi+Ink&family=Secular+One&display=swap');
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.title {}
+
+.loading_img {
+    width: 150px;
+    height: 150px;
+}
