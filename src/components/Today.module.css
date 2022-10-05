@@ -3,7 +3,7 @@
 .container {
     height: 400px;
     border: 2px solid #000;
-    border-radius: 15px;
+    border-radius: 25px;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     display: grid;
@@ -16,28 +16,30 @@
 }
 
 .subtitle {
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     font-family: 'Dosis', sans-serif;
     height: 60px;
-    line-height: 30px;
+    line-height: 60px;
     display: flex;
     align-items: center;
     font-weight: bold;
     font-size: 1.5rem;
+    margin-left: 15px;
 }
 
 .icon {
-    border: 1px solid #000;
-    width: 30px;
+    /* border: 1px solid #000; */
+    width: 25px;
     height: inherit;
-    margin-right: 10px;
-    display: inline-block;
+    line-height: inherit;
+    /* display: inline-block; */
+    margin-right: 5px;
 }
 
 .content {
     font-family: 'Inter', sans-serif;
     font-size: 2rem;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 30px;
     font-weight: normal;
 }
@@ -92,13 +94,14 @@
     display: grid;
     grid-template-rows: 50px 1fr 1fr;
     gap: 10px 0;
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
 }
 
 .title {
     line-height: 50px;
     grid-row: 1 / 2;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-align: center;
     margin: auto;
     margin-top: 10px;
@@ -127,7 +130,6 @@
 }
 
 .sContent {
-    font-family: 'Inter', sans-serif;
     font-size: 1.5rem;
     line-height: 60px;
 }
