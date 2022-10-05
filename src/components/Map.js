@@ -8,7 +8,6 @@ let map = null; // Map
 
 // Api : Weather Maps 2.0 3-hour step (OpenWeatherMap)
 function Map({ x, y }) {
-
   function initMap() {
     // Basic map layer
     let osm = L.tileLayer(
@@ -75,7 +74,7 @@ function Map({ x, y }) {
 
     Temp.addTo(map); // Essential code
 
-    // Overlays to add to map 
+    // Overlays to add to map
     let overlays = {
       Temperature: Temp,
       Precipitation: Precipitation,
@@ -87,9 +86,7 @@ function Map({ x, y }) {
     L.control.layers(overlays, null, { collapsed: false }).addTo(map);
   });
 
-  return (
-    <div id="map" style={{ height: "100%", borderRadius: "15px" }}></div>
-  );
+  return <div id="map" style={{ height: "100%", borderRadius: "15px" }}></div>;
 }
 
 export default Map;
