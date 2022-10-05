@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=DM+Sans:wght@500&family=Handlee&family=Nabla&family=Noto+Sans+Mono:wght@500&family=Reem+Kufi+Ink&family=Secular+One&display=swap');
 
+/* scrollbar none  */
+body {
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+.loading_container {
+    display: flex;
+    font-family: 'Noto Sans Mono', monospace;
+    font-weight: bold;
+    font-size: 4rem;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .container {
     position: fixed;
     height: 100vh;
@@ -47,4 +65,14 @@
     border-radius: 10px;
     overflow: scroll;
     padding: 15px;
+}
+
+.map_container {
+    height: 450px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    box-sizing: border-box;
+    margin-right: 30px;
 }
