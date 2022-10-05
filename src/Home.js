@@ -4,9 +4,10 @@ import WeekWeather from "./components/WeekWeather";
 import Today from "./components/Today";
 import styles from "./Home.module.css";
 import Map from "./components/Map";
+import Loading from "./components/Loading";
+
 
 const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
-
 const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const monthList = [
   "Jan",
@@ -53,6 +54,7 @@ function Home() {
 
   // * get position
   const getLocation = () => {
+    setLoading(true);
     if (navigator.geolocation) {
       // GPS를 지원하면
       navigator.geolocation.getCurrentPosition(
@@ -61,9 +63,10 @@ function Home() {
           lng = position.coords.longitude;
           console.log("위도 : " + lat + " 경도 : " + lng);
 
-          getCurrentWeather(lat, lng);
-          getWeekWeather(lat, lng);
-          getAddr(lat, lng);
+        //   getCurrentWeather(lat, lng);
+        //   getWeekWeather(lat, lng);
+        //   getAddr(lat, lng);
+            callAllFunction();
           setLoading(false);
         },
         function (error) {
@@ -80,7 +83,11 @@ function Home() {
       return;
     }
   };
-
+  const callAllFunction = () => {
+    getCurrentWeather(lat, lng);
+    getWeekWeather(lat, lng);
+    getAddr(lat, lng);
+  }
   // 위도 경도 좌표로 주소 얻기
   const getAddr = (lat, lng) => {
     // 주소-좌표 변환 객체를 생성합니다
@@ -143,7 +150,7 @@ function Home() {
 
   // ! RETURN
   return loading ? (
-    <div className={styles.loading_container}>Making...</div>
+    <Loading />
   ) : (
     <div className={styles.container}>
       <div className={styles.current}>
