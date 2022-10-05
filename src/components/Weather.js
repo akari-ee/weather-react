@@ -5,7 +5,7 @@ const DEG_ICON = "°";
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-function Weatehr({minTemp, maxTemp, temp, icon, desc, dt}) {
+function Weatehr({minTemp, maxTemp, temp, icon, desc, dt, loc}) {
     const [day, setDay] = useState(null);
     const [month, setMonth] = useState(null);
     const [date, setDate] = useState(0);
@@ -34,7 +34,7 @@ function Weatehr({minTemp, maxTemp, temp, icon, desc, dt}) {
                 <img className={styles.icon} src={`http://openweathermap.org/img/wn/${icon}@2x.png`}/>
                 <div className={styles.desc}>{desc}</div>
             </div>
-            <div className={styles.desc_wrapper}>위치</div>
+            <div className={styles.desc_wrapper}>{loc}</div>
             <div className={styles.date_wrapper}>{date}&nbsp;{month},{day}</div>
         </div>
     );
