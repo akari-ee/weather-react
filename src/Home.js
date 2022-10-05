@@ -24,7 +24,7 @@ const monthList = [
   "Dec",
 ];
 
-let lat, lng, detailAddr;
+let lat, lng, detailAddr; // 위도, 경도, 상세 주소
 
 function Home() {
   const [loading, setLoading] = useState(true);
