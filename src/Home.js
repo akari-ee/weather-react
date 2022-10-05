@@ -6,8 +6,6 @@ import styles from "./Home.module.css";
 import Map from "./components/Map";
 
 const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
-// const LAT = 37.471077623795;
-// const LON = 126.93920205178;
 
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -176,7 +174,7 @@ function Home() {
             />
 
             <div className={styles.map_container}>
-                {(lat && lng) &&
+                {lat && lng &&
                     <Map 
                         x={lat}
                         y={lng}
