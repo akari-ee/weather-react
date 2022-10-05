@@ -3,15 +3,19 @@ import Weatehr from "./components/Weather";
 import WeekWeather from "./components/WeekWeather";
 import Today from "./components/Today";
 import styles from "./Home.module.css";
+import Map from "./components/Map";
 
 const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
-const LAT = 37.471077623795;
-const LON = 126.93920205178;
+// const LAT = 37.471077623795;
+// const LON = 126.93920205178;
 
 const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+let lat, lng, detailAddr;
+
 function Home() {
+    const [loading, setLoading] = useState(true);
     // * for Weather.js
     const [info, setInfo] = useState({}); // ! Total json
     const [weather, setWeather] = useState({}); // icon, desc
@@ -34,11 +38,56 @@ function Home() {
         setFullDate(result => [...result, { day: `${day}`, month: `${month}`, date: `${date}`}]);
     }
 
+    // * get position
+    const getLocation = () => {
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                lat = position.coords.latitude;
+                lng = position.coords.longitude;
+                console.log('위도 : ' + lat + ' 경도 : ' + lng);
+
+                getCurrentWeather(lat, lng);
+                getWeekWeather(lat, lng)
+                getAddr(lat, lng);
+                setLoading(false);
+            }, function(error) {
+                console.error(error);
+            }, {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: Infinity
+            });
+        } else {
+            alert('GPS를 지원하지 않습니다');
+            return;
+        }
+    }
+    
+    // 위도 경도 좌표로 주소 얻기
+    const getAddr = (lat, lng) => {
+        // 주소-좌표 변환 객체를 생성합니다
+        const { kakao } = window;
+        let geocoder = new kakao.maps.services.Geocoder();
+        let coord = new kakao.maps.LatLng(lat, lng);
+        let callback = function(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                detailAddr = result[0].address.address_name; // 서울 관악구 봉천동 1712
+                let addrArray = detailAddr.split(" ");
+                detailAddr = "";
+                for(let i = 0; i < addrArray.length - 1; i++) {
+                    detailAddr += addrArray[i] + " ";
+                }
+                console.log(detailAddr);
+            }
+        }
+        geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+    }
+
     // * get Today's Weather
-    const getCurrentWeather = async () => {
+    const getCurrentWeather = async (lat, lng) => {
         const json = await(
             await fetch(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}&units=metric`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${APIKEY}&units=metric`
             )
         ).json();
         setInfo(json);
@@ -49,21 +98,22 @@ function Home() {
     }
 
     // * get Week Weahter
-    const getWeekWeather = async () => {
+    const getWeekWeather = async (lat, lng) => {
         const json = await(
             await fetch(
-                `http://api.openweathermap.org/data/2.5/forecast/daily?lat=${LAT}&lon=${LON}&cnt=8&appid=${APIKEY}&units=metric&lang=kr`
+                `http://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lng}&cnt=8&appid=${APIKEY}&units=metric&lang=kr`
             )
         ).json();
         setWeekList(json.list);
     }
+
     // * set CurrentWeather & WeekWeather
     useEffect(() => {
-        getCurrentWeather();
-        getWeekWeather();
+        getLocation();
     }, []);
 
     // console.log(info);
+    
     // * set WeekWeather's fullDate(Array)
     useEffect(() => {
         weekList.map((week, index) => {
@@ -72,8 +122,12 @@ function Home() {
         weekList.shift(); // remove first (weekList[0] = currentWeather)
         fullDate.shift();
     }, [weekList]);
+    
     // ! RETURN
     return (
+        loading ? 
+        ( <div className={styles.loading_container}>Making...</div> ) 
+        :(
         <div className={styles.container}>
             <div className={styles.current}>
                 <Weatehr
@@ -90,6 +144,7 @@ function Home() {
                     icon={weather.icon}
                     desc={weather.description} 
                     dt={info.dt}
+                    loc={detailAddr}
                 />
             </div>
             <div className={styles.next}>
@@ -119,9 +174,18 @@ function Home() {
                 windSpeed={Math.ceil(wind.speed)}
                 visibility={(info.visibility / 1000)}
             />
+
+            <div className={styles.map_container}>
+                {(lat && lng) &&
+                    <Map 
+                        x={lat}
+                        y={lng}
+                    />
+                }
+            </div>
         </div>
+        )
     );
 }
-
 
 export default Home;
