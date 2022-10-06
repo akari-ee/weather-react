@@ -6,7 +6,6 @@ import styles from "./Home.module.css";
 import Map from "./components/Map";
 import Loading from "./components/Loading";
 
-
 const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
 const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const monthList = [
@@ -63,10 +62,10 @@ function Home() {
           lng = position.coords.longitude;
           console.log("위도 : " + lat + " 경도 : " + lng);
 
-        //   getCurrentWeather(lat, lng);
-        //   getWeekWeather(lat, lng);
-        //   getAddr(lat, lng);
-            callAllFunction();
+          //   getCurrentWeather(lat, lng);
+          //   getWeekWeather(lat, lng);
+          //   getAddr(lat, lng);
+          callAllFunction();
           setLoading(false);
         },
         function (error) {
@@ -87,7 +86,7 @@ function Home() {
     getCurrentWeather(lat, lng);
     getWeekWeather(lat, lng);
     getAddr(lat, lng);
-  }
+  };
   // 위도 경도 좌표로 주소 얻기
   const getAddr = (lat, lng) => {
     // 주소-좌표 변환 객체를 생성합니다

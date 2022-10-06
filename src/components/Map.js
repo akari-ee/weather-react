@@ -18,15 +18,16 @@ function Map({ x, y }) {
           '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
       }
     );
-
     // add Basic Layer(osm) to map
     map = L.map("map", { center: new L.latLng(x, y), zoom: 13, layers: [osm] });
   }
+  
   function removeExistedMap() {
     if (map !== undefined && map !== null) {
       map.remove(); // should remove the map from UI and clean the inner children of DOM element
     }
   }
+
   useEffect(() => {
     removeExistedMap(); // remove existed Map
     initMap(); // init Map
@@ -84,7 +85,9 @@ function Map({ x, y }) {
     L.control.layers(overlays, null, { collapsed: false }).addTo(map);
   });
 
-  return <div id="map" style={{ height: "100%", borderRadius: "15px" }}></div>;
+  return (
+    <div id="map" style={{ height: "100%", borderRadius: "15px" }} />
+  );
 }
 
 export default Map;
