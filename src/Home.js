@@ -136,8 +136,6 @@ function Home() {
     getLocation();
   }, []);
 
-  // console.log(info);
-
   // * set WeekWeather's fullDate(Array)
   useEffect(() => {
     weekList.map((week, index) => {
