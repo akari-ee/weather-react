@@ -2,12 +2,28 @@ import { useState, useEffect } from "react";
 import styles from "./WeekWeather.module.css";
 
 const DEG_ICON = "°";
+const iconTransList = {
+  i11d : "/cloud/12.png",
+  i09d : "/cloud/7.png",
+  i10d : "/sun/8.png",
+  i13d : "/cloud/18.png",
+  i50d : "/cloud/5.png",
+  i01d : "/sun/26.png",
+  i01n : "/moon/10.png",
+  i02d : "/sun/27.png",
+  i02n : "/moon/15.png",
+  i03d : "/sun/4.png",
+  i03n : "/moon/14.png",
+  i04d : "/sun/13.png",
+  i04n : "/moon/41.png",
+}
+
 function WeekWeather({ month, day, date, maxTemp, minTemp, icon }) {
   return (
     <div className={styles.container}>
       <div className={styles.icon_wrapper}>
         <img
-          src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+          src={process.env.PUBLIC_URL + iconTransList[`i${icon}`]}
           className={styles.icon}
         />
       </div>
