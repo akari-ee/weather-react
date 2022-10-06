@@ -25,7 +25,16 @@
 ### Leaflet 
 > 프로젝트의 기능 중에 하나로 '지도'가 있다.
 > 단순 지도를 보여주는 것이 아닌 지도 위에 레이어(온도, 기압, 풍향, 구름 etc)를 덮어서 원하는 옵션을 클릭했을 때 그에 맞는 레이어가 덮힌 지도를 보여준다. 
+> Openweathermap에는 이러한 레이어를 제공해주는 Api가 있는데, Leaflet을 지원한다고 나와있어서 선택하게 됐다.
+
 > ###### [참고] <https://openweathermap.org/weathermap?basemap=map&cities=false&layer=clouds&lat=30&lon=-20&zoom=3>
+
+## 기능
+* 현재 날씨 보여주는 기능
+* 다음 7일의 날씨를 보여주는 기능
+* 현재 날씨의 세부사항(습도, 체감온도, 강수량, 풍속, 기압, 가시거리, 일출 & 일몰 시간대)을 알려주는 기능
+* 지도 기능
+
 > #### Openweathermap 
 - 전체적인 날씨 정보
     - 현재 시간 날씨(~~18:13이면 18:00 일 때 날씨~~) → Current weather data
