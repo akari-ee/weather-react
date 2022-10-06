@@ -29,11 +29,12 @@
 
 > ###### [참고] <https://openweathermap.org/weathermap?basemap=map&cities=false&layer=clouds&lat=30&lon=-20&zoom=3>
 
-## 기능
-* 현재 날씨 보여주는 기능
-* 다음 7일의 날씨를 보여주는 기능
-* 현재 날씨의 세부사항(습도, 체감온도, 강수량, 풍속, 기압, 가시거리, 일출 & 일몰 시간대)을 알려주는 기능
-* 지도 기능
+## 기능 설명
+### 기능
+* Weather.js : 현재 날씨 보여준다.
+* WeekWeather.js : 다음 7일의 날씨를 보여준다.
+* Today.js : 현재 날씨의 세부사항(습도, 체감온도, 강수량, 풍속, 기압, 가시거리, 일출 & 일몰 시간대)을 알려준다.
+* Map.js : 다양한 레이어가 적용된 지도를 보여준다.
 
 > #### Openweathermap 
 - 전체적인 날씨 정보
