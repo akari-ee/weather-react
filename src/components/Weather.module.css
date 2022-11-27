@@ -9,9 +9,15 @@
     display: grid;
     gap: 10px 10px;
     grid-template-columns: minmax(200px, auto) 1fr;
-    /* background-image: url("http://openweathermap.org/img/wn/10d@2x.png");
-    background-repeat: no-repeat;
-    background-size: cover; */
+    color: #fff;
+    background: rgba(95,111,122,1);
+background: -moz-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(95,111,122,1)), color-stop(100%, rgba(13,35,51,1)));
+background: -webkit-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
+background: -o-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
+background: -ms-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
+background: linear-gradient(to right, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5f6f7a', endColorstr='#0d2333', GradientType=1 );
 }
 
 .temp_wrapper {
@@ -56,9 +62,9 @@
 .icon {
     border: 1px solid gold;
     display: block;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
+    width: 130px;
+    height: 130px;
+    margin: auto auto;
 }
 
 .desc_wrapper {

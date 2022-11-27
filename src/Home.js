@@ -145,10 +145,11 @@ function Home() {
     fullDate.shift();
   }, [weekList]);
 
+  // loading ? (
+  //   <Loading />
+  // ) : (
   // ! RETURN
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div className={styles.container}>
       <div className={styles.current}>
         <Weatehr
