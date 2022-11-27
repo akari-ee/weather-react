@@ -5,6 +5,7 @@ import Today from "./components/Today";
 import styles from "./Home.module.css";
 import Map from "./components/Map";
 import Loading from "./components/Loading";
+import * as functy from "./functions/InitFunction.js";
 
 const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
 const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -37,7 +38,7 @@ function Home() {
   // ! icon, minTemp, maxTemp, [date, day] => unix to real time => use TimeStamp => calculate
   const [weekList, setWeekList] = useState([]); // WeekWeather List
   const [fullDate, setFullDate] = useState([]); // * day, month, date Array for each weekList[i].dt
-
+  // const [arr, setArr] = useState([]);
   // * Unix time to Real time
   const unixToReal = (dt, i) => {
     const real = new Date(dt * 1000);
@@ -65,7 +66,7 @@ function Home() {
           //   getCurrentWeather(lat, lng);
           //   getWeekWeather(lat, lng);
           //   getAddr(lat, lng);
-          callAllFunction();
+          // callAllFunction();
           setLoading(false);
         },
         function (error) {
@@ -82,11 +83,13 @@ function Home() {
       return;
     }
   };
+
   const callAllFunction = () => {
     getCurrentWeather(lat, lng);
     getWeekWeather(lat, lng);
     getAddr(lat, lng);
   };
+
   // 위도 경도 좌표로 주소 얻기
   const getAddr = (lat, lng) => {
     // 주소-좌표 변환 객체를 생성합니다
@@ -133,9 +136,14 @@ function Home() {
 
   // * set CurrentWeather & WeekWeather
   useEffect(() => {
-    getLocation();
+    // getLocation();
+    let retArr = functy.init({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList});
+    lat = retArr[0];
+    lng = retArr[1];
+    detailAddr = retArr[2];
+    console.log(retArr);
+    // console.log(lat, lng, detailAddr);
   }, []);
-
   // * set WeekWeather's fullDate(Array)
   useEffect(() => {
     weekList.map((week, index) => {
