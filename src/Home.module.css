@@ -3,23 +3,10 @@
 /* scrollbar none  */
 body {
     -ms-overflow-style: none;
-    color: #fff;
-    background: rgba(43,46,61,1);
-background: -moz-linear-gradient(45deg, rgba(43,46,61,1) 0%, rgba(13,38,107,1) 100%);
-background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(43,46,61,1)), color-stop(100%, rgba(13,38,107,1)));
-background: -webkit-linear-gradient(45deg, rgba(43,46,61,1) 0%, rgba(13,38,107,1) 100%);
-background: -o-linear-gradient(45deg, rgba(43,46,61,1) 0%, rgba(13,38,107,1) 100%);
-background: -ms-linear-gradient(45deg, rgba(43,46,61,1) 0%, rgba(13,38,107,1) 100%);
-background: linear-gradient(45deg, rgba(43,46,61,1) 0%, rgba(13,38,107,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2e3d', endColorstr='#0d266b', GradientType=1 );
-    /* background: rgba(13,44,56,1);
-    background: -moz-linear-gradient(left, rgba(13,44,56,1) 0%, rgba(0,0,0,1) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(13,44,56,1)), color-stop(100%, rgba(0,0,0,1)));
-    background: -webkit-linear-gradient(left, rgba(13,44,56,1) 0%, rgba(0,0,0,1) 100%);
-    background: -o-linear-gradient(left, rgba(13,44,56,1) 0%, rgba(0,0,0,1) 100%);
-    background: -ms-linear-gradient(left, rgba(13,44,56,1) 0%, rgba(0,0,0,1) 100%);
-    background: linear-gradient(to right, rgba(13,44,56,1) 0%, rgba(0,0,0,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d2c38', endColorstr='#000000', GradientType=1 ); */
+    color: #000;
+    /* background-image: url(../src/assets/skyBackground.jpg); */
+    background: url(../src/assets/bg.jpg) no-repeat fixed center center;
+    background-size: cover;
 }
 
 /* hide scroll-bar */
@@ -45,7 +32,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2e3d', end
     grid-template-rows: 1fr 2fr;
     gap: 30px 50px;
     margin-top: 20px;
-    margin-left: 70px;
+    margin-left: 20px;
     /* gap: ; */
     /* display: flex;
     justify-content: center;
@@ -70,36 +57,56 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2e3d', end
     display: grid;
     grid-template-rows: 50px 6fr;
     overflow: hidden;
+    box-shadow: 13px 63px 23px -3px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 13px 63px 23px -3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 13px 63px 23px -3px rgba(0,0,0,0.25);
 }
 
 .title {
-    border: 1px solid dodgerblue;
+    color: #000;
+    /* border: 1px solid dodgerblue; */
     margin-bottom: 10px;
     font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .weather_wrapper {
-    background: rgba(95,111,122,1);
-background: -moz-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(95,111,122,1)), color-stop(100%, rgba(13,35,51,1)));
-background: -webkit-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
-background: -o-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
-background: -ms-linear-gradient(left, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
-background: linear-gradient(to right, rgba(95,111,122,1) 0%, rgba(13,35,51,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5f6f7a', endColorstr='#0d2333', GradientType=1 );
-    border: 2px solid crimson;
+    border: 1px solid #000;
     border-radius: 10px;
     overflow: scroll;
     box-sizing: border-box;
     padding: 15px;
+    background-color: rgba(255, 255, 255, 0.177);
 }
 
 .map_container {
     height: 500px;
     border: 2px solid #000;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     box-sizing: border-box;
     margin-right: 30px;
+    box-shadow: 13px 11px 14px -8px rgba(0,0,0,0.56);
+    -webkit-box-shadow: 13px 11px 14px -8px rgba(0,0,0,0.56);
+    -moz-box-shadow: 13px 11px 14px -8px rgba(0,0,0,0.56);
+}
+
+@media (max-width: 1200px) {
+    .map_container {
+        display: none;
+    }
+}
+@media (max-width: 717px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.9fr;
+        margin-left: 130px;
+    }
+}
+
+@media (max-width: 660px) {
+    .container {
+        margin-left: 80px;
+    }
 }

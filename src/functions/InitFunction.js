@@ -1,17 +1,12 @@
 const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
-let detailAddr;
+let lat, lng, addr;
 
-export function init({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList}) {
-  let [lat, lng, detailAddr] = getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList});
-  // getCurrentWeather({setInfo, setWeather, setMain, setWind, setSys, lat, lng});
-  // getWeekWeather({setWeekList, lat, lng});
-  // const detailAddr = getAddr({lat, lng});
-  return [lat, lng, detailAddr];
+export function init({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList, lat, lng}) {
+  getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList});
 }
-
-export function getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList}) {
+export function getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList, setCityInfo, cityInfo}) {
     setLoading(true);
-    let lat, lng;
+    // let lat, lng, addr;
     if (navigator.geolocation) {
       // GPS를 지원하면
       navigator.geolocation.getCurrentPosition(
@@ -20,8 +15,6 @@ export function getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, s
           lng = position.coords.longitude;
           getCurrentWeather({APIKEY, setInfo, setWeather, setMain, setWind, setSys, lat, lng});
           getWeekWeather({APIKEY, setWeekList, lat, lng});
-          getAddr({lat, lng});
-          console.log("cur", lat, lng, detailAddr);
           setLoading(false);
         },
         function (error) {
@@ -35,29 +28,29 @@ export function getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, s
       );
     } else {
       alert("GPS를 지원하지 않습니다");
-      return;
     }
-    return [lat, lng, detailAddr];   
 }
 
-export function getAddr({lat, lng}) {
-    // 주소-좌표 변환 객체를 생성합니다
-    const { kakao } = window;
-    // let detailAddr;
-    let geocoder = new kakao.maps.services.Geocoder();
-    let coord = new kakao.maps.LatLng(lat, lng);
-    let callback = (result, status) => {
-      if (status === kakao.maps.services.Status.OK) {
-        detailAddr = result[0].address.address_name; // 서울 관악구 봉천동 1712
-        let addrArray = detailAddr.split(" ");
-        detailAddr = "";
-        for (let i = 0; i < addrArray.length - 1; i++) {
-          detailAddr += addrArray[i] + " ";
-        }
-      }
-    };
-    geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-}
+// export function getAddr({lat, lng, setCityInfo, cityInfo}){
+//     // 주소-좌표 변환 객체를 생성합니다
+//     const { kakao } = window;
+//     let detailAddr;
+//     let geocoder = new kakao.maps.services.Geocoder();
+//     let coord = new kakao.maps.LatLng(lat, lng);
+//     let callback = (result, status) => {
+//       if (status === kakao.maps.services.Status.OK) {
+//         detailAddr = result[0].address.address_name; // 서울 관악구 봉천동 1712
+//         let addrArray = detailAddr.split(" ");
+//         detailAddr = "";
+//         for (let i = 0; i < addrArray.length - 1; i++) {
+//           detailAddr += addrArray[i] + " ";
+//         }
+//         addr = detailAddr
+//         setCityInfo({...cityInfo, addr: addr})
+//       }
+//     };
+//     geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+// }
 
 export async function getCurrentWeather({APIKEY, setInfo, setWeather, setMain, setWind, setSys, lat, lng}) {
     const json = await (

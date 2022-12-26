@@ -20,10 +20,15 @@ const monthList = [
 
 const iconTransList = {
   i11d : "/cloud/12.png",
+  i11n : "/cloud/7.png",
   i09d : "/cloud/7.png",
+  i09n : "/cloud/7.png",
   i10d : "/sun/8.png",
+  i10n : "/sun/8.png",
   i13d : "/cloud/18.png",
+  i13n : "/cloud/18.png",
   i50d : "/cloud/5.png",
+  i50n : "/cloud/5.png",
   i01d : "/sun/26.png",
   i01n : "/moon/10.png",
   i02d : "/sun/27.png",
@@ -75,9 +80,11 @@ function Weatehr({ minTemp, maxTemp, temp, icon, desc, dt, loc }) {
         />
         <div className={styles.desc}>{desc}</div>
       </div>
-      <div className={styles.desc_wrapper}>{loc}</div>
-      <div className={styles.date_wrapper}>
-        {date}&nbsp;{month},{day}
+      <div className={styles.other_info_wrapper}>
+        <div className={styles.desc_wrapper}>{loc}</div>
+        <div className={styles.date_wrapper}>
+          {date}&nbsp;{month},{day}
+        </div>
       </div>
     </div>
   );

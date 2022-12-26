@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Weatehr from "./components/Weather";
+import Weather from "./components/Weather";
 import WeekWeather from "./components/WeekWeather";
 import Today from "./components/Today";
 import styles from "./Home.module.css";
@@ -38,7 +38,7 @@ function Home() {
   // ! icon, minTemp, maxTemp, [date, day] => unix to real time => use TimeStamp => calculate
   const [weekList, setWeekList] = useState([]); // WeekWeather List
   const [fullDate, setFullDate] = useState([]); // * day, month, date Array for each weekList[i].dt
-  // const [arr, setArr] = useState([]);
+
   // * Unix time to Real time
   const unixToReal = (dt, i) => {
     const real = new Date(dt * 1000);
@@ -61,8 +61,6 @@ function Home() {
         function (position) {
           lat = position.coords.latitude;
           lng = position.coords.longitude;
-          console.log("위도 : " + lat + " 경도 : " + lng);
-
           //   getCurrentWeather(lat, lng);
           //   getWeekWeather(lat, lng);
           //   getAddr(lat, lng);
@@ -80,7 +78,6 @@ function Home() {
       );
     } else {
       alert("GPS를 지원하지 않습니다");
-      return;
     }
   };
 
@@ -104,7 +101,6 @@ function Home() {
         for (let i = 0; i < addrArray.length - 1; i++) {
           detailAddr += addrArray[i] + " ";
         }
-        console.log(detailAddr);
       }
     };
     geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
@@ -134,16 +130,25 @@ function Home() {
     setWeekList(json.list);
   };
 
+  useEffect(() => {
+    getLocation();
+  }, [])
+
   // * set CurrentWeather & WeekWeather
   useEffect(() => {
-    // getLocation();
-    let retArr = functy.init({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList});
-    lat = retArr[0];
-    lng = retArr[1];
-    detailAddr = retArr[2];
-    console.log(retArr);
-    // console.log(lat, lng, detailAddr);
-  }, []);
+    functy.init({
+      APIKEY,
+      setLoading,
+      setInfo,
+      setWeather,
+      setMain,
+      setWind,
+      setSys,
+      setWeekList,
+    });
+    getAddr(lat, lng);
+  }, [lat, lng]);
+
   // * set WeekWeather's fullDate(Array)
   useEffect(() => {
     weekList.map((week, index) => {
@@ -160,7 +165,7 @@ function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.current}>
-        <Weatehr
+        <Weather
           // feels={main.feels_like}
           minTemp={Math.ceil(main.temp_min)}
           maxTemp={Math.ceil(main.temp_max)}
