@@ -89,3 +89,5 @@
 // 	console.error(err);
 // });
 <!-- // !-- -->
+## 실행 화면
+<img width="1344" alt="스크린샷 2023-02-02 오후 6 15 46" src="https://user-images.githubusercontent.com/101445377/216282511-2277cf54-0aea-4612-84a5-d1cdac51fe5e.png">
