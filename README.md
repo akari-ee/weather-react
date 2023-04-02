@@ -9,11 +9,14 @@
 
 > 이때의 겪은 오류, 제대로 구현해보지 못한 경험 때문에 다시 한번 제대로 공부하면서 구현해보고 싶다는 생각이 들었고, 디자인부터 설계, 로직 구현을 모두 맡아서 해보기로 했다. 
 
-## 사용 언어, 프레임워크
-* 언어 : HTML, CSS, JAVASCRIPT
-* 프레임워크 : React
+## Skill Stacks
+- HTML
+- CSS
+- JavaScript
+- React
+- OpenWeatherMap API
+- Leaflet
 
-## 사용한 API 
 ### Openweathermap API
 #### 선택 이유
 > * 이유의 대부분은 예전에 진행했던 팀 프로젝트에서 기상청 Api를 시도했었는데,
@@ -36,13 +39,14 @@
 * Today.js : 현재 날씨의 세부사항(습도, 체감온도, 강수량, 풍속, 기압, 가시거리, 일출 & 일몰 시간대)을 알려준다.
 * Map.js : 다양한 레이어가 적용된 지도를 보여준다.
 
-> #### Openweathermap 
+> #### Openweathermap API 정보
 - 전체적인 날씨 정보
-    - 현재 시간 날씨(~~18:13이면 18:00 일 때 날씨~~) → Current weather data
+    - 현재 시간 날씨 → Current weather data
+        - `API CALL : "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}"`
     - 1시간 간격의 날씨 → Hourly Forecast 4 days(현재 일 포함해서 보여줌,단 12시에 요청하면 13시꺼부터 알려준다.)
-        - "https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=37.471077623795&lon=126.93920205178&appid=9f5e42842d269c898ad63d79ed4afc01"
+        - `API CALL : "https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${lat}&lon=${lon}&appid=${API_KEY}"`
     - n일 간격의 다음 날씨 → Daily Forecast 16 days(현재 일 포함해서 보여줌)
-        - "api.openweathermap.org/data/2.5/forecast/daily?lat=37.471077623795&lon=126.93920205178&cnt=7&appid=9f5e42842d269c898ad63d79ed4afc01"
+        - `API CALL : "api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}"`
 
 - 세부 날씨 정보
     - 현재 시간 날씨
@@ -56,39 +60,7 @@
         - 기압
         - 지역(보류) => 나중에 위치 서비스 권한으로 처리해볼 것
         - 날씨 아이콘 이미지
-<!-- // * Ambee APIKEY
-// const API_KEY = "6601d70d3a7b873c14b749f94fb24de17cffce9c3d44e9c2602fcc227a0f90e8";
-// ! Ambee API
-// 3일간의 날씨 예보 알려줌 (현재 27일이면 -> 28, 29, 30)
-// fetch("https://api.ambeedata.com/weather/forecast/daily/by-lat-lng?lat=37.471077623795&lng=126.93920205178", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-api-key": API_KEY,
-// 		"Content-type": "application/json"
-// 	}
-// })
-// .then(response => {
-// 	console.log(response.json());
-// })
-// .catch(err => {
-// 	console.error(err);
-// });
 
-// 2일간의 날씨 예보를 1시간 대 별로 알려줌(27일 12시면 29일 12시까지)
-// fetch("https://api.ambeedata.com/weather/forecast/by-lat-lng?lat=37.471077623795&lng=126.93920205178", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-api-key": API_KEY,
-// 		"Content-type": "application/json"
-// 	}
-// })
-// .then(response => {
-// 	console.log(response.json());
-// })
-// .catch(err => {
-// 	console.error(err);
-// });
-<!-- // !-- -->
 # 실행 화면
 ## 전체 화면
 <img width="1344" alt="스크린샷 2023-02-02 오후 6 15 46" src="https://user-images.githubusercontent.com/101445377/216282511-2277cf54-0aea-4612-84a5-d1cdac51fe5e.png">
