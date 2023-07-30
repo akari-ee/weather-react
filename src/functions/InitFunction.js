@@ -1,9 +1,10 @@
-const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
+const APIKEY = "5d1e1bea2685d8ab78eeb9520d5fab35";
 let lat, lng, addr;
 
 export function init({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList, lat, lng}) {
   getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList});
 }
+
 export function getLocation({APIKEY, setLoading, setInfo, setWeather, setMain, setWind, setSys, setWeekList, setCityInfo, cityInfo}) {
     setLoading(true);
     // let lat, lng, addr;

@@ -7,7 +7,7 @@ import Map from "./components/Map";
 import Loading from "./components/Loading";
 import * as functy from "./functions/InitFunction.js";
 
-const APIKEY = "9f5e42842d269c898ad63d79ed4afc01";
+const APIKEY = "fd384a693b18429bce40de496719118c";
 const dayList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const monthList = [
   "Jan",
@@ -61,9 +61,9 @@ function Home() {
         function (position) {
           lat = position.coords.latitude;
           lng = position.coords.longitude;
-          //   getCurrentWeather(lat, lng);
-          //   getWeekWeather(lat, lng);
-          //   getAddr(lat, lng);
+            // getCurrentWeather(lat, lng);
+            // getWeekWeather(lat, lng);
+            // getAddr(lat, lng);
           // callAllFunction();
           setLoading(false);
         },
@@ -166,16 +166,9 @@ function Home() {
     <div className={styles.container}>
       <div className={styles.current}>
         <Weather
-          // feels={main.feels_like}
           minTemp={Math.ceil(main.temp_min)}
           maxTemp={Math.ceil(main.temp_max)}
           temp={Math.ceil(main.temp)}
-          // humid={main.humidity}
-          // pressure={main.pressure}
-          // rain={null}
-          // sunrise={sys.sunrise}
-          // sunset={sys.sunset}
-          // windSpeed={wind.speed}
           icon={weather.icon}
           desc={weather.description}
           dt={info.dt}
