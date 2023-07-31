@@ -1,4 +1,6 @@
 # 토이 프로젝트(개인) 
+> ⛔️ 현재, API 권한 만료로 인해 작동하지 않습니다. 현재 NextJS를 공부하고 있어, 다른 API를 사용해서 마이그레이션 진행 중입니다.
+https://github.com/lunarmoon7/weather-nextjs
 ## 오늘 날씨가 어때요?[가제]
 
 ## 프로젝트 계획 동기
